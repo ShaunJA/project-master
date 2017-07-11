@@ -15,8 +15,8 @@ import java.util.GregorianCalendar;
 /**
  * Created by ShaungAJ on 2017/7/11.
  */
-public class DateUtil {
-    private static Logger logger = LoggerFactory.getLogger(DateUtil.class);
+public class DateUtils {
+    private static Logger logger = LoggerFactory.getLogger(DateUtils.class);
     private static String defaultDatePattern = "yyyy-MM-dd";
     private static String timePattern = "HH:mm";
     private static final String TS_FORMAT = defaultDatePattern + " HH:mm:ss.S";
@@ -27,7 +27,7 @@ public class DateUtil {
 
     //~ Methods ================================================================
 
-    public DateUtil() {
+    public DateUtils() {
     }
 
     /**
@@ -37,7 +37,7 @@ public class DateUtil {
         try {
             return yMdHms.format(calendar.getTime());
         } catch (Exception e) {
-            logger.debug("DateUtil.getDateTime():" + e.getMessage());
+            logger.debug("DateUtils.getDateTime():" + e.getMessage());
             return "";
         }
     }
@@ -49,7 +49,7 @@ public class DateUtil {
         try {
             return yMd.format(calendar.getTime());
         } catch (Exception e) {
-            logger.debug("DateUtil.getDate():" + e.getMessage());
+            logger.debug("DateUtils.getDate():" + e.getMessage());
             return "";
         }
     }
@@ -63,7 +63,7 @@ public class DateUtil {
             temp += Hms.format(calendar.getTime());
             return temp;
         } catch (Exception e) {
-            logger.debug("DateUtil.getTime():" + e.getMessage());
+            logger.debug("DateUtils.getTime():" + e.getMessage());
             return "";
         }
     }
@@ -77,7 +77,7 @@ public class DateUtil {
         try {
             return getYear() + "-01-01";
         } catch (Exception e) {
-            logger.debug("DateUtil.getStartDate():" + e.getMessage());
+            logger.debug("DateUtils.getStartDate():" + e.getMessage());
             return "";
         }
     }
@@ -89,7 +89,7 @@ public class DateUtil {
         try {
             return getDate();
         } catch (Exception e) {
-            logger.debug("DateUtil.getEndDate():" + e.getMessage());
+            logger.debug("DateUtils.getEndDate():" + e.getMessage());
             return "";
         }
     }
@@ -103,7 +103,7 @@ public class DateUtil {
             //返回的int型，需要字符串转换
             return String.valueOf(calendar.get(Calendar.YEAR));
         } catch (Exception e) {
-            logger.debug("DateUtil.getYear():" + e.getMessage());
+            logger.debug("DateUtils.getYear():" + e.getMessage());
             return "";
         }
     }
@@ -119,7 +119,7 @@ public class DateUtil {
             return df.format((calendar.get(Calendar.MONTH) + 1));
             //return String.valueOf(calendar.get(Calendar.MONTH) + 1);
         } catch (Exception e) {
-            logger.debug("DateUtil.getMonth():" + e.getMessage());
+            logger.debug("DateUtils.getMonth():" + e.getMessage());
             return "";
         }
     }
@@ -131,7 +131,7 @@ public class DateUtil {
         try {
             return String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         } catch (Exception e) {
-            logger.debug("DateUtil.getDay():" + e.getMessage());
+            logger.debug("DateUtils.getDay():" + e.getMessage());
             return "";
         }
     }
@@ -151,7 +151,7 @@ public class DateUtil {
             margin = (int) (l / (24 * 60 * 60 * 1000));
             return margin;
         } catch (Exception e) {
-            logger.debug("DateUtil.getMargin():" + e.toString());
+            logger.debug("DateUtils.getMargin():" + e.toString());
             return 0;
         }
     }
@@ -172,7 +172,7 @@ public class DateUtil {
             margin = (l / (24 * 60 * 60 * 1000.00));
             return margin;
         } catch (Exception e) {
-            logger.debug("DateUtil.getMargin():" + e.toString());
+            logger.debug("DateUtils.getMargin():" + e.toString());
             return 0;
         }
     }
@@ -188,7 +188,7 @@ public class DateUtil {
             margin += (Integer.parseInt(date2.substring(4, 7).replaceAll("-0", "-")) - Integer.parseInt(date1.substring(4, 7).replaceAll("-0", "-")));
             return margin;
         } catch (Exception e) {
-            logger.debug("DateUtil.getMargin():" + e.toString());
+            logger.debug("DateUtils.getMargin():" + e.toString());
             return 0;
         }
     }
@@ -202,7 +202,7 @@ public class DateUtil {
             gCal.add(GregorianCalendar.DATE, i);
             return yMd.format(gCal.getTime());
         } catch (Exception e) {
-            logger.debug("DateUtil.addDay():" + e.toString());
+            logger.debug("DateUtils.addDay():" + e.toString());
             return getDate();
         }
     }
@@ -216,7 +216,7 @@ public class DateUtil {
             gCal.add(GregorianCalendar.MONTH, i);
             return yMd.format(gCal.getTime());
         } catch (Exception e) {
-            logger.debug("DateUtil.addMonth():" + e.toString());
+            logger.debug("DateUtils.addMonth():" + e.toString());
             return getDate();
         }
     }
@@ -230,7 +230,7 @@ public class DateUtil {
             gCal.add(GregorianCalendar.YEAR, i);
             return yMd.format(gCal.getTime());
         } catch (Exception e) {
-            logger.debug("DateUtil.addYear():" + e.toString());
+            logger.debug("DateUtils.addYear():" + e.toString());
             return "";
         }
     }
@@ -255,7 +255,7 @@ public class DateUtil {
             }
             return day;
         } catch (Exception e) {
-            logger.debug("DateUtil.getMonthDay():" + e.toString());
+            logger.debug("DateUtils.getMonthDay():" + e.toString());
             return 1;
         }
     }
@@ -591,16 +591,16 @@ public class DateUtil {
 
     //测试功能时使用
     public static void main(String[] args) {
-        System.out.println(DateUtil.getDate());//获取日期格式为2010-08-12
-        System.out.println(DateUtil.getDateTime());//获取日期格式为2010-08-12 18:08:21
-        System.out.println(DateUtil.getTime());//获取日期格式为18:08:21
-        System.out.println(DateUtil.getYear());//获取当前时间年份2010
-        System.out.println(DateUtil.getMonth());//获取当年时间月份08
-        System.out.println(DateUtil.getStartDate());//获取2010-01-01
-        System.out.println(DateUtil.getEndDate());//2010-08-12
-        System.out.println(DateUtil.getDay());//获得服务器在当前月中已经过了的天数12
-        System.out.println(DateUtil.getMargin("2010-05-02", "2010-04-01"));//比较两个日期相差的天数
-        System.out.println(DateUtil.getDoubleMargin("2010-05-07 23:22:11", "2010-04-01 01:33:33"));
+        System.out.println(DateUtils.getDate());//获取日期格式为2010-08-12
+        System.out.println(DateUtils.getDateTime());//获取日期格式为2010-08-12 18:08:21
+        System.out.println(DateUtils.getTime());//获取日期格式为18:08:21
+        System.out.println(DateUtils.getYear());//获取当前时间年份2010
+        System.out.println(DateUtils.getMonth());//获取当年时间月份08
+        System.out.println(DateUtils.getStartDate());//获取2010-01-01
+        System.out.println(DateUtils.getEndDate());//2010-08-12
+        System.out.println(DateUtils.getDay());//获得服务器在当前月中已经过了的天数12
+        System.out.println(DateUtils.getMargin("2010-05-02", "2010-04-01"));//比较两个日期相差的天数
+        System.out.println(DateUtils.getDoubleMargin("2010-05-07 23:22:11", "2010-04-01 01:33:33"));
     }
 
 }
