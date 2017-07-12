@@ -13,39 +13,39 @@ import java.util.*;
  */
 public class EntityUtils {
     // 格式化标识符
-    public static final String format_separator_pattern = "\\|";
-    public static final String format_separator_str = "|";
+    private static final String format_separator_pattern = "\\|";
+    private static final String format_separator_str = "|";
 
     // 别名标识符
-    public static final String alias_separator_pattern = "\\:";
-    public static final String alias_separator_str = ":";
+    private static final String alias_separator_pattern = "\\:";
+    private static final String alias_separator_str = ":";
 
     // 组合类标识符
-    public static final String children_separator_pattern = "\\.";
-    public static final String children_separator_str = ".";
+    private static final String children_separator_pattern = "\\.";
+    private static final String children_separator_str = ".";
 
     // 默认值标识符
-    public static final String default_separator_pattern = "=";
-    public static final String default_separator_str = "=";
+    private static final String default_separator_pattern = "=";
+    private static final String default_separator_str = "=";
 
     // 是否开启DEBUG模式
-    public static final boolean DEBUG = false;
+    private static final boolean DEBUG = false;
 
     // 时间类型
     @SuppressWarnings("rawtypes")
-    public final static List dateTypes = Arrays.asList(java.util.Date.class, java.sql.Timestamp.class, java.sql.Date.class);
+    private final static List dateTypes = Arrays.asList(java.util.Date.class, java.sql.Timestamp.class, java.sql.Date.class);
 
     // 数字类型
     @SuppressWarnings("rawtypes")
-    public final static List numberTypes = Arrays.asList(Integer.class, Long.class, Float.class, Double.class, BigDecimal.class);
+    private final static List numberTypes = Arrays.asList(Integer.class, Long.class, Float.class, Double.class, BigDecimal.class);
 
     // 集合类型数组
     @SuppressWarnings("rawtypes")
-    public final static List basicCollections = Arrays.asList(List.class, Set.class);
+    private final static List basicCollections = Arrays.asList(List.class, Set.class);
 
     // 自动格式化的几种类型，其他类型不做处理
-    public final static String dateType = "date";// 时间类型
-    public final static String numberType = "number";// 数字类型
+    private final static String dateType = "date";// 时间类型
+    private final static String numberType = "number";// 数字类型
 
     /**
      * 获取类对象中所有的基本属性字段名称

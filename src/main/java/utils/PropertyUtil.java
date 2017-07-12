@@ -26,7 +26,7 @@ public class PropertyUtil {
         props = new Properties();
         InputStream in = null;
         try {
-            in = PropertyUtil.class.getClassLoader().getResourceAsStream("constant.properties");
+            in = PropertyUtil.class.getClassLoader().getResourceAsStream("config.properties");
             //in = PropertyUtil.class.getResourceAsStream("/jdbc.properties");
             props.load(new InputStreamReader(in, "UTF-8"));//处理配置文件中有中文会导致乱码的问题
         } catch (FileNotFoundException e) {

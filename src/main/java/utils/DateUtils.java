@@ -22,6 +22,7 @@ public class DateUtils {
     private static final String TS_FORMAT = defaultDatePattern + " HH:mm:ss.S";
     private static Calendar calendar = Calendar.getInstance();
     private static SimpleDateFormat yMd = new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat Md = new SimpleDateFormat("MM-dd");
     private static SimpleDateFormat Hms = new SimpleDateFormat("HH:mm:ss");
     private static SimpleDateFormat yMdHms = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -587,6 +588,43 @@ public class DateUtils {
     public static String getTimestamp(Date date) {
         String timestamp = "" + (date.getYear() + 1900) + date.getMonth() + date.getDate() + date.getMinutes() + date.getSeconds() + date.getTime();
         return timestamp;
+    }
+
+    /**
+     * 获取中文时间
+     * @param date 时间
+     * @return 中文时间
+     */
+    public static String getCNTime(Date date) {
+        if (StringUtils.isEmpty(date)) {
+            return null;
+        }
+        // 当前时间
+        Calendar now = Calendar.getInstance();
+        // 待处理时间
+        Calendar time = Calendar.getInstance();
+        time.setTime(date);
+
+        if (time.after(now)) {
+            return "刚刚";
+        } else if (now.get(Calendar.YEAR) > time.get(Calendar.YEAR)) {
+            return yMd.format(time.getTime());
+        } else if (now.get(Calendar.DAY_OF_YEAR) - time.get(Calendar.DAY_OF_YEAR) > 1) {
+            return Md.format(time.getTime());
+        } else if (now.get(Calendar.DAY_OF_YEAR) - time.get(Calendar.DAY_OF_YEAR) == 1) {
+            return "昨天";
+        } else if ((now.get(Calendar.HOUR_OF_DAY) * 60 + now.get(Calendar.MINUTE)) - (time.get(Calendar.HOUR_OF_DAY) * 60 + time.get(Calendar.MINUTE)) >= 60) {
+            return (now.get(Calendar.HOUR_OF_DAY) - time.get(Calendar.HOUR_OF_DAY)) + "小时前";
+        } else if ((now.get(Calendar.HOUR_OF_DAY) * 60 + now.get(Calendar.MINUTE)) - (time.get(Calendar.HOUR_OF_DAY) * 60 + time.get(Calendar.MINUTE)) < 60) {
+            int minute = (now.get(Calendar.HOUR_OF_DAY) * 60 + now.get(Calendar.MINUTE)) - (time.get(Calendar.HOUR_OF_DAY) * 60 + time.get(Calendar.MINUTE));
+            if (minute > 0) {
+                return minute + "分钟前";
+            } else {
+                return "刚刚";
+            }
+        } else {
+            return "刚刚";
+        }
     }
 
     //测试功能时使用
